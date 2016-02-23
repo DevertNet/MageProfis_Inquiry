@@ -1,0 +1,15 @@
+{
+   "name": "mageprofis/inquiry",
+   "type": "magento-module",
+   "license": "GPL-3.0",
+   "description": "Inquriy a product via e-mail.",
+   "homepage": "https://github.com/DevertNet/MageProfis_Inquiry",
+   "authors":[
+        {
+            "name":"Leon Weickert"
+        }
+    ],
+   "require": {
+      "magento-hackathon/magento-composer-installer": "*"
+   }
+}
