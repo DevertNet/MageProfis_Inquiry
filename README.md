@@ -12,7 +12,7 @@ catalog/product/view.phtml
 ```
 
 ### Mail Template
-```app/locale/de_DE/template/email/inquiry_customer.html```
+<code>app/locale/de_DE/template/email/inquiry_customer.html<code>
 
 ### Required
 * Bootstrap CSS (Modal)
