@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout>
+	<inquiry_send_index>
+		<block type="inquiry/submit" name="root" template="mageprofis/inquiry/submit.phtml" />
+	</inquiry_send_index>
+    
+    <catalog_product_view>
+        <reference name="product.info">
+            <block type="core/template" name="inquiry.button" template="mageprofis/inquiry/button.phtml" />
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="inquiry.form" template="mageprofis/inquiry/form.phtml" />
+        </reference>
+    </catalog_product_view>
+</layout>

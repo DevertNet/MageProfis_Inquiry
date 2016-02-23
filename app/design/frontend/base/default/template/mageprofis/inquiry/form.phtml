@@ -1,0 +1,100 @@
+<?php
+$_product = Mage::registry('current_product');
+?>
+<!-- Modal -->
+<div class="modal fade use-bootstrap" id="inquireModal" tabindex="-1" role="dialog" aria-labelledby="inquireModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Persönliches Angebot anfordern</h4>
+      </div>
+        <form style="text-align:left" id="inquireForm" method="post">
+          <div class="modal-body">
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="anrede">Anrede</label>
+                    <select class="form-control" id="anrede" name="prefix">
+                        <option value="Herr">Herr</option>
+                        <option value="Frau">Frau</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="required" for="name"><em>*</em>Ihr Name</label>
+                    <input type="text" name="name" class="form-control required-entry">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="telefon">Ihre Telefonnummer (optional)</label>
+                    <input class="form-control" type="text" name="phone" id="telefon">
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="required" for="email"><em>*</em>Ihre E-Mail</label>
+                    <input class="form-control required-entry validate-email" type="text" id="email" name="email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="adresse">Ihre Straße und Hausnummer (optional)</label>
+                <input class="form-control" type="text" id="adresse" name="street">
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label class="required" for="plz"><em>*</em>Ihre PLZ (zur Versandkostenberechnung)</label>
+                    <input class="form-control required-entry" type="text" name="zip">
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="ort">Ihr Ort (optional)</label>
+                    <input class="form-control" type="text" id="ort" name="city">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="nachricht">Ihre Nachricht an uns (optional)</label>
+                <textarea id="nachricht" name="comment" class="form-control" rows="3" cols="3" title="Nachricht"></textarea>
+            </div>
+            <p class="required">* Pflichtfelder</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $this->__('Close') ?></button>
+            <button type="submit" class="btn btn-primary has-spinner"><span class="spinner"><i class="fa fa-refresh fa-spin"></i></span> <?php echo $this->__('Unverbindliche Anfrage senden') ?></button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    //<![CDATA[
+        var inquireForm = new VarienForm('inquireForm');
+    
+        (function($){
+            $('#inquireForm').submit(function(e){
+                e.preventDefault();
+
+                if(inquireForm.validator.validate())
+                {
+                    var cartFormData = $('#product_addtocart_form').formParams();
+                    $(this).find('button[type=submit]').addClass('active').attr('disabled', 'disabled');
+                    
+                    $.ajax({
+                        url : '/inquiry/send',
+                        type : 'POST',
+                        data: {
+                            'send'	        : true,
+                            'inquiry'       : $('#inquireForm').formParams(),
+                            'flexoptions'   : cartFormData.flexoptions,
+                            'suboptions'    : cartFormData.suboptions,
+                            'product_id'    : <?php echo $_product->getId(); ?>
+                        },
+                        success : function(data) {
+                            $('#inquireForm .modal-footer').fadeOut();
+                            $('#inquireForm .modal-body').html( data );
+                        }
+                    });
+                }
+                return false;
+            });
+        })(jQuery);
+    //]]>
+</script>

@@ -1,0 +1,5 @@
+app/etc/modules/MageProfis_Inquiry.xml                          app/etc/modules/MageProfis_Inquiry.xml
+app/code/local/MageProfis/Inquiry                               app/code/local/MageProfis/Inquiry
+app/design/frontend/base/default/layout/mageprofis_inquiry.xml  app/design/frontend/base/default/layout/mageprofis_inquiry.xml
+app/design/frontend/base/default/template/mageprofis/inquiry    app/design/frontend/base/default/template/mageprofis/inquiry
+app/locale/de_DE/template/email/inquiry_customer.html          app/locale/de_DE/template/email/inquiry_customer.html

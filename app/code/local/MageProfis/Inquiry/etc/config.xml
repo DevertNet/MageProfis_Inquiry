@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<MageProfis_Inquiry>
+			<version>0.1.0</version>
+		</MageProfis_Inquiry>
+	</modules>
+	<global>
+        <models>
+			<inquiry>
+				<class>MageProfis_Inquiry_Model</class>
+			</inquiry>
+		</models>
+		<blocks>
+			<inquiry>
+				<class>MageProfis_Inquiry_Block</class>
+			</inquiry>
+		</blocks>
+		<layout>
+			<updates>
+				<kontaktformular>MageProfis_Inquiry_Block_Kontaktformular</kontaktformular>
+			</updates>
+		</layout>
+        <template>
+            <email>
+                <inquiry_customer module="MageProfis_Inquiry">
+                    <label>Inquiry E-Mail for Customers</label>
+                    <file>inquiry_customer.html</file>
+                    <type>html</type>
+                </inquiry_customer>
+            </email>
+        </template>
+	</global>
+	<frontend>
+		<routers>
+			<inquiry>
+				<use>standard</use>
+				<args>
+					<module>MageProfis_Inquiry</module>
+					<frontName>inquiry</frontName>
+				</args>
+			</inquiry>
+		</routers>
+		<layout>
+			<updates>
+				<inquiry>
+					<file>mageprofis_inquiry.xml</file>
+				</inquiry>
+			</updates>
+		</layout>
+	</frontend>
+</config>
